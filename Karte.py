@@ -14,7 +14,6 @@ lauf_graph = ox.graph_from_place(ort, network_type="walk")
 rad_coords = [
     (48.24528510915935, 14.506265553390474),  # Punkt 1: Hinterholz
     (48.23854019421386, 14.559327697631678),  # Punkt 2: Albern
-    (48.23743090738155, 14.566233805016443),  # Punkt 3: Obersebern
     (48.2450841545805, 14.544986505056013),  # Punkt 3: Obersebern
 ]
 
@@ -62,10 +61,9 @@ folium.PolyLine(
 beschreibungen = [
     "Punkt 1: Freibad (Start Rad)",
     "Punkt 2: Albern",
-    "Punkt 3: Obersebern Brücke",
-    "Punkt 4: Karosserie Steinkellner",
-    "Punkt 5: Einbahnstraße",
-    "Punkt 6: Karosserie Steinkellner (Ziel)"
+    "Punkt 3: Karosserie Steinkellner",
+    "Punkt 4: Einbahnstraße",
+    "Punkt 5: Karosserie Steinkellner (Ziel)"
 ]
 alle_punkte = rad_coords + lauf_coords[1:]  
 
@@ -97,10 +95,9 @@ legende_html = '''
 <b>Punkte:</b><br>
 1. Freibad (Start Rad)<br>
 2. Albern<br>
-3. Obersebern Brücke<br>
-4. Karosserie Steinkellner<br>
-5. Einbahnstraße<br>
-6. Karosserie Steinkellner (Ziel)
+3. Karosserie Steinkellner<br>
+4. Einbahnstraße<br>
+5. Karosserie Steinkellner (Ziel)
 </div>
 '''
 
