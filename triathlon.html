@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_adfefbc66a18acd2165aa7fbd4d98acf {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+<div style="
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: white;
+    border:2px solid grey;
+    z-index:9999;
+    font-size:14px;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 2px 2px 6px rgba(0,0,0,0.3);
+">
+<b>Legende:</b><br>
+<span style="color:magenta;">■</span> Radweg<br>
+<span style="color:orange;">■</span> Laufweg<br><br>
+<b>Punkte:</b><br>
+1. Hinterholz (Start Rad)<br>
+2. Albern<br>
+3. Obersebern (Wechsel zu Fuß)<br>
+4. Reiferdorf<br>
+5. Mauthausen (Ziel)
+</div>
+    
+            <div class="folium-map" id="map_adfefbc66a18acd2165aa7fbd4d98acf" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_adfefbc66a18acd2165aa7fbd4d98acf = L.map(
+                "map_adfefbc66a18acd2165aa7fbd4d98acf",
+                {
+                    center: [48.24528510915935, 14.506265553390474],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 13,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_5d9258383322228cbb748fed8a912b1b = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_5d9258383322228cbb748fed8a912b1b.addTo(map_adfefbc66a18acd2165aa7fbd4d98acf);
+        
+    
+            var poly_line_0dd211a17cc564f66670c19d23c23ec7 = L.polyline(
+                [[48.2451492, 14.506212], [48.24496, 14.5061176], [48.244903, 14.5063129], [48.244831, 14.5065337], [48.2447466, 14.5067299], [48.2447029, 14.5068253], [48.244344, 14.507611], [48.2442615, 14.5075203], [48.2413925, 14.5135903], [48.2413523, 14.5136729], [48.241268, 14.5138261], [48.2395257, 14.5184916], [48.2394763, 14.5187785], [48.2392078, 14.5254335], [48.2392102, 14.5255946], [48.2391454, 14.5255948], [48.2391572, 14.5276638], [48.2391528, 14.5290611], [48.2389087, 14.5345558], [48.2384494, 14.5377871], [48.238311, 14.5380863], [48.2380044, 14.5393674], [48.2374281, 14.5414377], [48.2373528, 14.5417087], [48.2372418, 14.5423618], [48.2371045, 14.5432579], [48.2371569, 14.5439844], [48.2371547, 14.5441259], [48.2370932, 14.544742], [48.2368532, 14.5468147], [48.2371206, 14.5478538], [48.2371778, 14.5483985], [48.2371846, 14.5484631], [48.2371917, 14.5490214], [48.2371799, 14.5492076], [48.2371629, 14.5494554], [48.237144, 14.5497307], [48.2371233, 14.5500105], [48.2371135, 14.550151], [48.2370883, 14.5505098], [48.2370782, 14.5506594], [48.2370584, 14.5509307], [48.2370087, 14.5516305], [48.2369975, 14.551966], [48.2369983, 14.5524795], [48.2369988, 14.552691], [48.2369997, 14.5529297], [48.2369998, 14.5530718], [48.2370043, 14.5535983], [48.2370315, 14.5542018], [48.2370985, 14.5550583], [48.2385917, 14.5637787], [48.2385917, 14.5637787], [48.2379544, 14.5652368], [48.2379921, 14.5652812], [48.2374579, 14.566217], [48.2374579, 14.566217], [48.2379921, 14.5652812], [48.2386996, 14.563989], [48.2415882, 14.5586066], [48.2432574, 14.5558061], [48.2449922, 14.5529247], [48.2454141, 14.5522537], [48.2458592, 14.5514642], [48.2464491, 14.550262], [48.2465276, 14.5499759], [48.2466289, 14.5485342], [48.2464589, 14.5474942], [48.2459307, 14.5447532], [48.24516, 14.5448876]],
+                {"bubblingMouseEvents": true, "color": "magenta", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "magenta", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 5}
+            ).addTo(map_adfefbc66a18acd2165aa7fbd4d98acf);
+        
+    
+            poly_line_0dd211a17cc564f66670c19d23c23ec7.bindTooltip(
+                `<div>
+                     Radweg
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_49cd71cd36000f71c6b4b84d0b92465f = L.polyline(
+                [[48.24516, 14.5448876], [48.2459307, 14.5447532], [48.2457457, 14.5433913], [48.2457245, 14.5432833], [48.2461835, 14.5431705], [48.2471673, 14.5433412], [48.2498705, 14.5433383], [48.2512072, 14.5429842], [48.2519451, 14.5419622], [48.2519451, 14.5419622], [48.2512072, 14.5429842], [48.2498705, 14.5433383], [48.2471673, 14.5433412], [48.2461835, 14.5431705], [48.2457245, 14.5432833], [48.2457457, 14.5433913], [48.2459307, 14.5447532], [48.24516, 14.5448876]],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "orange", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 5}
+            ).addTo(map_adfefbc66a18acd2165aa7fbd4d98acf);
+        
+    
+            poly_line_49cd71cd36000f71c6b4b84d0b92465f.bindTooltip(
+                `<div>
+                     Laufweg
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_2cc7d3b75865bc840c24bfd872d2cb8c = L.polyline(
+                [[48.2451492, 14.506212], [48.24496, 14.5061176], [48.244903, 14.5063129], [48.244831, 14.5065337], [48.2447466, 14.5067299], [48.2447029, 14.5068253], [48.244344, 14.507611], [48.2442615, 14.5075203], [48.2413925, 14.5135903], [48.2413523, 14.5136729], [48.241268, 14.5138261], [48.2395257, 14.5184916], [48.2394763, 14.5187785], [48.2392078, 14.5254335], [48.2392102, 14.5255946], [48.2391454, 14.5255948], [48.2391572, 14.5276638], [48.2391528, 14.5290611], [48.2389087, 14.5345558], [48.2384494, 14.5377871], [48.238311, 14.5380863], [48.2380044, 14.5393674], [48.2374281, 14.5414377], [48.2373528, 14.5417087], [48.2372418, 14.5423618], [48.2371045, 14.5432579], [48.2371569, 14.5439844], [48.2371547, 14.5441259], [48.2370932, 14.544742], [48.2368532, 14.5468147], [48.2371206, 14.5478538], [48.2371778, 14.5483985], [48.2371846, 14.5484631], [48.2371917, 14.5490214], [48.2371799, 14.5492076], [48.2371629, 14.5494554], [48.237144, 14.5497307], [48.2371233, 14.5500105], [48.2371135, 14.550151], [48.2370883, 14.5505098], [48.2370782, 14.5506594], [48.2370584, 14.5509307], [48.2370087, 14.5516305], [48.2369975, 14.551966], [48.2369983, 14.5524795], [48.2369988, 14.552691], [48.2369997, 14.5529297], [48.2369998, 14.5530718], [48.2370043, 14.5535983], [48.2370315, 14.5542018], [48.2370985, 14.5550583], [48.2385917, 14.5637787], [48.2385917, 14.5637787], [48.2379544, 14.5652368], [48.2379921, 14.5652812], [48.2374579, 14.566217], [48.2374579, 14.566217], [48.2379921, 14.5652812], [48.2386996, 14.563989], [48.2415882, 14.5586066], [48.2432574, 14.5558061], [48.2449922, 14.5529247], [48.2454141, 14.5522537], [48.2458592, 14.5514642], [48.2464491, 14.550262], [48.2465276, 14.5499759], [48.2466289, 14.5485342], [48.2464589, 14.5474942], [48.2459307, 14.5447532], [48.24516, 14.5448876]],
+                {"bubblingMouseEvents": true, "color": "magenta", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "magenta", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 5}
+            ).addTo(map_adfefbc66a18acd2165aa7fbd4d98acf);
+        
+    
+            poly_line_2cc7d3b75865bc840c24bfd872d2cb8c.bindTooltip(
+                `<div>
+                     Radstrecke
+                 </div>`,
+                {
+  "permanent": true,
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_c08406f429e73d5bbd14794f9601ba40 = L.marker(
+                [48.24528510915935, 14.506265553390474],
+                {
+}
+            ).addTo(map_adfefbc66a18acd2165aa7fbd4d98acf);
+        
+    
+            var icon_8786d047634a2d9f408a2647ea984cfc = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_fc1ad0d8876a40ef608e982340605c77 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_e17e985ebc8fb8ed6b71971b6a035e02 = $(`<div id="html_e17e985ebc8fb8ed6b71971b6a035e02" style="width: 100.0%; height: 100.0%;">Punkt 1: Freibad (Start Rad)</div>`)[0];
+                popup_fc1ad0d8876a40ef608e982340605c77.setContent(html_e17e985ebc8fb8ed6b71971b6a035e02);
+            
+        
+
+        marker_c08406f429e73d5bbd14794f9601ba40.bindPopup(popup_fc1ad0d8876a40ef608e982340605c77)
+        ;
+
+        
+    
+    
+            marker_c08406f429e73d5bbd14794f9601ba40.bindTooltip(
+                `<div>
+                     Punkt 1: Freibad (Start Rad)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_c08406f429e73d5bbd14794f9601ba40.setIcon(icon_8786d047634a2d9f408a2647ea984cfc);
+            
+    
+            var marker_fa82f924b065aeff2301ed98b7d33af4 = L.marker(
+                [48.23854019421386, 14.559327697631678],
+                {
+}
+            ).addTo(map_adfefbc66a18acd2165aa7fbd4d98acf);
+        
+    
+            var icon_d4152f8e13f82ca160aa82fcee5ef844 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_47382ee126c71020936db92fdac05d21 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_c250762f284bacbbd97555225557a2b0 = $(`<div id="html_c250762f284bacbbd97555225557a2b0" style="width: 100.0%; height: 100.0%;">Punkt 2: Albern</div>`)[0];
+                popup_47382ee126c71020936db92fdac05d21.setContent(html_c250762f284bacbbd97555225557a2b0);
+            
+        
+
+        marker_fa82f924b065aeff2301ed98b7d33af4.bindPopup(popup_47382ee126c71020936db92fdac05d21)
+        ;
+
+        
+    
+    
+            marker_fa82f924b065aeff2301ed98b7d33af4.bindTooltip(
+                `<div>
+                     Punkt 2: Albern
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_fa82f924b065aeff2301ed98b7d33af4.setIcon(icon_d4152f8e13f82ca160aa82fcee5ef844);
+            
+    
+            var marker_6d9710307611da00cc30086b927043e3 = L.marker(
+                [48.23743090738155, 14.566233805016443],
+                {
+}
+            ).addTo(map_adfefbc66a18acd2165aa7fbd4d98acf);
+        
+    
+            var icon_2628d6e072501bd1a47fe3f536ee26f9 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_289db3f3def3b9c2a476c9ae7105465c = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_d9ab9d8530ec8b71b7e57fc9121e3fbe = $(`<div id="html_d9ab9d8530ec8b71b7e57fc9121e3fbe" style="width: 100.0%; height: 100.0%;">Punkt 3: Obersebern Brücke</div>`)[0];
+                popup_289db3f3def3b9c2a476c9ae7105465c.setContent(html_d9ab9d8530ec8b71b7e57fc9121e3fbe);
+            
+        
+
+        marker_6d9710307611da00cc30086b927043e3.bindPopup(popup_289db3f3def3b9c2a476c9ae7105465c)
+        ;
+
+        
+    
+    
+            marker_6d9710307611da00cc30086b927043e3.bindTooltip(
+                `<div>
+                     Punkt 3: Obersebern Brücke
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_6d9710307611da00cc30086b927043e3.setIcon(icon_2628d6e072501bd1a47fe3f536ee26f9);
+            
+    
+            var marker_c5e6d407698da35e6dcc2a514c42f64a = L.marker(
+                [48.2450841545805, 14.544986505056013],
+                {
+}
+            ).addTo(map_adfefbc66a18acd2165aa7fbd4d98acf);
+        
+    
+            var icon_ec49cbe444c646db697cf15eacc51c3d = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_ee0dfb1ee0c219dcbf31e1101640ead0 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_1a3cf825eb1adb006d83c2895f07d7d1 = $(`<div id="html_1a3cf825eb1adb006d83c2895f07d7d1" style="width: 100.0%; height: 100.0%;">Punkt 4: Karosserie Steinkellner</div>`)[0];
+                popup_ee0dfb1ee0c219dcbf31e1101640ead0.setContent(html_1a3cf825eb1adb006d83c2895f07d7d1);
+            
+        
+
+        marker_c5e6d407698da35e6dcc2a514c42f64a.bindPopup(popup_ee0dfb1ee0c219dcbf31e1101640ead0)
+        ;
+
+        
+    
+    
+            marker_c5e6d407698da35e6dcc2a514c42f64a.bindTooltip(
+                `<div>
+                     Punkt 4: Karosserie Steinkellner
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_c5e6d407698da35e6dcc2a514c42f64a.setIcon(icon_ec49cbe444c646db697cf15eacc51c3d);
+            
+    
+            var marker_ab22ca116dda1a1ff30bfe333842338b = L.marker(
+                [48.25182199201539, 14.542427232949514],
+                {
+}
+            ).addTo(map_adfefbc66a18acd2165aa7fbd4d98acf);
+        
+    
+            var icon_f7e28873c0c892d87e028ee20eba2580 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_505bbd524fb0b9ec9bb31cfe23f5b333 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_6533a3b5ab20e0fde8e327bac636a037 = $(`<div id="html_6533a3b5ab20e0fde8e327bac636a037" style="width: 100.0%; height: 100.0%;">Punkt 4: Einbahnstraße</div>`)[0];
+                popup_505bbd524fb0b9ec9bb31cfe23f5b333.setContent(html_6533a3b5ab20e0fde8e327bac636a037);
+            
+        
+
+        marker_ab22ca116dda1a1ff30bfe333842338b.bindPopup(popup_505bbd524fb0b9ec9bb31cfe23f5b333)
+        ;
+
+        
+    
+    
+            marker_ab22ca116dda1a1ff30bfe333842338b.bindTooltip(
+                `<div>
+                     Punkt 4: Einbahnstraße
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_ab22ca116dda1a1ff30bfe333842338b.setIcon(icon_f7e28873c0c892d87e028ee20eba2580);
+            
+    
+            var marker_1c6c32c6fd5194c213a67b584a79ea87 = L.marker(
+                [48.2450841545805, 14.544986505056013],
+                {
+}
+            ).addTo(map_adfefbc66a18acd2165aa7fbd4d98acf);
+        
+    
+            var icon_0c029e8a4055f1a5b627b233e49cb567 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_f7c831d92c89efb9afe77682ef04e422 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_dba5888aa89f3b35e85483a1ef8b5ef7 = $(`<div id="html_dba5888aa89f3b35e85483a1ef8b5ef7" style="width: 100.0%; height: 100.0%;">Punkt 5: Karosserie Steinkellner (Ziel)</div>`)[0];
+                popup_f7c831d92c89efb9afe77682ef04e422.setContent(html_dba5888aa89f3b35e85483a1ef8b5ef7);
+            
+        
+
+        marker_1c6c32c6fd5194c213a67b584a79ea87.bindPopup(popup_f7c831d92c89efb9afe77682ef04e422)
+        ;
+
+        
+    
+    
+            marker_1c6c32c6fd5194c213a67b584a79ea87.bindTooltip(
+                `<div>
+                     Punkt 5: Karosserie Steinkellner (Ziel)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_1c6c32c6fd5194c213a67b584a79ea87.setIcon(icon_0c029e8a4055f1a5b627b233e49cb567);
+            
+</script>
+</html>

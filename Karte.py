@@ -77,7 +77,7 @@ for idx, coord in enumerate(alle_punkte):
         icon=folium.Icon(color='blue', icon='info-sign')
     ).add_to(karte)
 
-# Legende (HTML im unteren rechten Eck)
+# Legende 
 legende_html = '''
 <div style="
     position: fixed;
