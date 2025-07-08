@@ -64,8 +64,8 @@ beschreibungen = [
     "Punkt 2: Albern",
     "Punkt 3: Obersebern Brücke",
     "Punkt 4: Karosserie Steinkellner",
-    "Punkt 4: Einbahnstraße",
-    "Punkt 5: Karosserie Steinkellner (Ziel)"
+    "Punkt 5: Einbahnstraße",
+    "Punkt 6: Karosserie Steinkellner (Ziel)"
 ]
 alle_punkte = rad_coords + lauf_coords[1:]  
 
@@ -95,11 +95,12 @@ legende_html = '''
 <span style="color:magenta;">■</span> Radweg<br>
 <span style="color:orange;">■</span> Laufweg<br><br>
 <b>Punkte:</b><br>
-1. Hinterholz (Start Rad)<br>
+1. Freibad (Start Rad)<br>
 2. Albern<br>
-3. Obersebern (Wechsel zu Fuß)<br>
-4. Reiferdorf<br>
-5. Mauthausen (Ziel)
+3. Obersebern Brücke<br>
+4. Karosserie Steinkellner<br>
+5. Einbahnstraße<br>
+6. Karosserie Steinkellner (Ziel)
 </div>
 '''
 
